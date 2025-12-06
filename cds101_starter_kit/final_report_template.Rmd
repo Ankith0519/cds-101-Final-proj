@@ -1,6 +1,6 @@
 ---
 title: "CDS 101 – Final Project Report"
-author: "Group Name / Members"
+author: "Ankith Kolapalli, Julia Conway, Ruhama"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 output:
   html_document:
@@ -23,16 +23,17 @@ output:
 
 # 2. Data Acquisition & Description
 
-- Name and source of the dataset(s).  
-- How you obtained the data (download link, API, etc.).  
-- Brief description of the variables / features (with units if relevant).  
-- Approximate size (rows, columns).  
-- Any ethical, privacy, or bias considerations (if applicable).
+Data Set Name: CarDekho Vehicle Dataset
+Source: Kaggle (https://www.kaggle.com/datasets/nehalbirla/vehicle-dataset-from-cardekho)
+Variable description: the dataset has car features like brand, body type, engine type, distance, registration, and price.  
+Size: around 4,300 rows with 9 coloumns  
 
-```{r setup-data, echo=FALSE, message=FALSE, warning=FALSE}
-# Example: load a dataset (replace with your own)
-# library(readr)
-# data <- read_csv("data/your_data.csv")
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+cars_raw <- read_csv("data/cars_data.csv")
 ```
 
 # 3. Data Cleaning & Preprocessing
@@ -54,6 +55,17 @@ Describe the steps you took to make the data usable, for example:
 #   )
 ```
 
+```{r}
+cars_clean <- cars_raw %>%
+  filter(!is.na(Price), !is.na(Brand)) %>% 
+  rename(EngineType = `Engine Type`) %>% 
+  mutate(Brand = factor(Brand),
+         Body = factor(Body),
+         EngineType = factor(EngineType),
+         Registration = factor(Registration)
+  )
+```
+
 # 4. Exploratory Data Analysis (EDA)
 
 This section maps directly to the **EDA** part of the rubric:
@@ -62,18 +74,52 @@ This section maps directly to the **EDA** part of the rubric:
 - Visualizations  
 - Interpretation connected to the research question  
 
-```{r eda-summary, message=FALSE, warning=FALSE}
-# library(dplyr)
-# summary(data_clean)
+```{r}
+library(dplyr)
+summary(cars_data)
 ```
 
-```{r eda-plot-example, message=FALSE, warning=FALSE, fig.cap="Example histogram of a numeric variable (EDA rubric)."}
-# library(ggplot2)
-# ggplot(data_clean, aes(x = some_numeric_variable)) +
-#   geom_histogram(binwidth = 5, color = "white") +
-#   labs(x = "Some Variable", y = "Count", title = "Distribution of Some Variable")
+
+```{r}
+ggplot(cars_clean, aes(x = Price)) +
+  geom_histogram(binwidth = 5000, color = "black", fill = "blue") +
+  coord_cartesian(xlim = c(0, 40000))
+  labs(title = "Histogram of Used Car Prices",
+       x = "Price",
+       y = "Count"
+  )
 ```
 
+
+```{r}
+ggplot(cars_clean, aes(x = Mileage)) +
+  geom_histogram(binwidth = 18, color = "black", fill = "green") +
+  labs(title = "Histogram of Car Mileage",
+       x = "Mileage",
+       y = "Count")
+```
+```{r}
+avg_price<- cars_clean %>%
+  group_by(Brand) %>%
+  summarise(mean_price = mean(Price, na.rm = TRUE)) %>%
+  arrange(mean_price)
+
+ggplot(avg_price,aes(x = reorder(Brand, mean_price), y = mean_price)) +
+  geom_col(fill = "pink") +
+  coord_flip() +
+  labs(title = "Average Used Car Price by Brand",
+       x = "Brand",
+       y = "Average Price")
+```
+```{r}
+ggplot(cars_clean, aes(x = Mileage, y = Price)) +
+  geom_point(alpha = 0.4) +
+  labs(
+    title = "Relationship Between Mileage and Price",
+    x = "Mileage",
+    y = "Price"
+  )
+```
 # 5. Visualization Quality and Storytelling
 
 Use this section to satisfy the **Visualization Quality** rubric criterion:
