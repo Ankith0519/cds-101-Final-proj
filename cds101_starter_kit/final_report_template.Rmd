@@ -81,9 +81,9 @@ summary(cars_data)
 
 
 ```{r}
-ggplot(cars_clean, aes(x = Price)) +
-  geom_histogram(binwidth = 5000, color = "black", fill = "blue") +
-  coord_cartesian(xlim = c(0, 40000))
+ggplot(cars_clean) +
+  geom_histogram(mapping = aes(x = Price),binwidth = 2000,color = "black",fill  = "blue") +
+  coord_cartesian(xlim = c(0, 40000)) +
   labs(title = "Histogram of Used Car Prices",
        x = "Price",
        y = "Count"
@@ -92,11 +92,12 @@ ggplot(cars_clean, aes(x = Price)) +
 
 
 ```{r}
-ggplot(cars_clean, aes(x = Mileage)) +
-  geom_histogram(binwidth = 18, color = "black", fill = "green") +
+ggplot(cars_clean) +
+  geom_histogram(mapping = aes(x = Mileage),binwidth = 18,color = "black",fill  = "green") +
   labs(title = "Histogram of Car Mileage",
        x = "Mileage",
-       y = "Count")
+       y = "Count"
+  )
 ```
 ```{r}
 avg_price<- cars_clean %>%
@@ -104,20 +105,29 @@ avg_price<- cars_clean %>%
   summarise(mean_price = mean(Price, na.rm = TRUE)) %>%
   arrange(mean_price)
 
-ggplot(avg_price,aes(x = reorder(Brand, mean_price), y = mean_price)) +
-  geom_col(fill = "pink") +
-  coord_flip() +
+ggplot(avg_price) +
+  geom_col(mapping = aes(x = Brand, y = mean_price, fill = "pink")) +
   labs(title = "Average Used Car Price by Brand",
        x = "Brand",
-       y = "Average Price")
+       y = "Average Price"
+  )
 ```
 ```{r}
-ggplot(cars_clean, aes(x = Mileage, y = Price)) +
-  geom_point(alpha = 0.4) +
-  labs(
-    title = "Relationship Between Mileage and Price",
-    x = "Mileage",
-    y = "Price"
+ggplot(cars_clean) +
+  geom_point(mapping = aes(x = Mileage, y = Price),
+    alpha = 0.4) +
+  labs(title = "Relationship Between Mileage and Price",
+       x = "Mileage",
+       y = "Price"
+  )
+```
+```{r}
+ggplot(cars_clean) +
+  geom_boxplot(mapping = aes(x = Body, y = Price)) +
+  coord_cartesian(ylim = c(0, 200000)) +
+  labs(title = "Distribution of Car Prices by Body Type",
+       x = "Body Type",
+       y = "Price"
   )
 ```
 # 5. Visualization Quality and Storytelling
@@ -148,16 +158,17 @@ Describe:
 - Tables/plots summarizing performance.  
 - A short interpretation of each metric/plot.
 
-```{r modeling, eval=FALSE}
-# Example structure:
-# set.seed(123)
-# train_index <- sample(seq_len(nrow(data_clean)), size = 0.8 * nrow(data_clean))
-# train <- data_clean[train_index, ]
-# test  <- data_clean[-train_index, ]
-#
-# model <- glm(target ~ ., data = train, family = binomial)
-# preds <- predict(model, newdata = test, type = "response")
-# # compute metrics...
+
+```{r}
+set.seed(321)
+train_index <- sample(seq_len(nrow(cars_clean)), size = 0.8 * nrow(cars_clean))
+train <- cars_clean[train_index, ]
+test  <- cars_clean[-train_index, ]
+
+model <- lm(Price ~ Mileage + Brand + Body + EngineV + EngineType + Year,data = train)
+preds <- predict(model, newdata = test)
+rmse <- sqrt(mean((test$Price - preds)^2, na.rm = TRUE))
+rmse
 ```
 
 # 8. Conclusions & Recommendations
