@@ -169,6 +169,8 @@ model <- lm(Price ~ Mileage + Brand + Body + EngineV + EngineType + Year,data = 
 preds <- predict(model, newdata = test)
 rmse <- sqrt(mean((test$Price - preds)^2, na.rm = TRUE))
 rmse
+
+summary(model)$adj.r.squared 
 ```
 
 # 8. Conclusions & Recommendations
