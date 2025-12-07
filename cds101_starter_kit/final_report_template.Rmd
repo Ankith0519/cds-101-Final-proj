@@ -140,11 +140,12 @@ Use this section to satisfy the **Visualization Quality** rubric criterion:
 
 # 6. Modeling Approach
 
-Explain how you framed the problem and which models you chose:
 
-- Type of task (regression, classification, etc.).  
-- Baseline model or heuristic, if used.  
-- Main model(s) chosen and why they are appropriate.
+Since our outcome variable we chose was price and its numeric and continuous, a regression model seemed the most appropriate.
+We started with a Baseline model and its prupose was to set a reference point for our real model should do better than to be somewhat useful.
+The baseline predicted the average price of all cars in the training set for every car in the test. It didn't use any specific features and was a simple guess average.
+After our baseline we made or main model which was a multiple linear regression model. It let us look at different features that each had a part in predicting a cars price. Since linear regression is a lot more easier to understand it works best with categorical predictors and values and it was many times throughout the class. By comparing the RMSE and the R^2 of the linear model against the basline we were able to look at how much better our model was perfoming compared to the simple average based prediction.
+
 
 # 7. Model Implementation & Evaluation
 
@@ -165,10 +166,17 @@ train_index <- sample(seq_len(nrow(cars_clean)), size = 0.8 * nrow(cars_clean))
 train <- cars_clean[train_index, ]
 test  <- cars_clean[-train_index, ]
 
+baseline <- mean(train$Price, na.rm = TRUE)
+baseline_preds <- rep(baseline, nrow(test))
+baseline_rmse <- sqrt(mean((test$Price - baseline_preds)^2, na.rm = TRUE))
+baseline_rmse
+
 model <- lm(Price ~ Mileage + Brand + Body + EngineV + EngineType + Year,data = train)
 preds <- predict(model, newdata = test)
 rmse <- sqrt(mean((test$Price - preds)^2, na.rm = TRUE))
 rmse
+
+
 
 summary(model)$adj.r.squared 
 ```
