@@ -154,10 +154,27 @@ This corresponds to the **Model Implementation & Evaluation** rubric criterion.
 Describe:
 
 - Features used.  
-- Data splitting strategy (train/test or cross-validation).  
-- Metrics used (accuracy, F1, RMSE, etc.).  
-- Tables/plots summarizing performance.  
+
+Our model used Mileage, Enginev, and Year as numeric predictors and Brand, Bodytype, and Enginetype as categorical. They were chose becuase they're the most common factors that would influence a cars market value.
+- Data splitting strategy (train/test or cross-validation).
+
+We split the data into 80% training set and 20% testing. It let us fit the model on the majority of the dat set
+and look at how well it can generalize to the cars that are unseen by it.
+
+- Metrics used (accuracy, F1, RMSE, etc.).
+
+The Baseline predicted the average price from the training set for every car in the test set.
+It helps us just have a benchmark that we should try to beat with our model.
+Our baseline RMSE was 23,146.9 which means the guess is off by around 23k on average.
+
+We built a multiple linear regression model predicting price based on numeric and categorical predictors.
+Linear regressions works best becuase our target Price is numeric as well. After training our linear model the RMSE was 16,786.2 which is a lot lower than the baseline.
+This meant our model was doing better, and the adjusted R² was 0.4376 which means about 43.8% of the variation in car prices was explained by the  
 - A short interpretation of each metric/plot.
+The multiple linear regression model clearly did better the baseline model, lowering the error by over $6,000 on average.
+The adjusted R² shows our model explains a meaningful part of price variation but doesn't grab  everything.
+This makes sense because real-world car pricing depends on so many other factors that aren't part of the data set like car condition, past accidents, location, seller, etc.
+The RMSE and R² together say that the model is useful but not perfect which is something consistent with these types of data sets.
 
 
 ```{r}
