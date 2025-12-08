@@ -16,13 +16,12 @@ output:
 
 # 1. Problem Definition
 
-- Clearly state the main problem or question you are investigating.
 The question that our group is investigating explores how the fuel economy has changed in United States vehicles from 2005 to 2020. Our specific research question is "Which car features, like mileage, price, engine type, etc, have the strongest effect on vehicle price?"
-- Explain why it is interesting or important.
+
 This question is interesting because it allows us to see trends and patterns between different variables like engine type and mileage in relation to the price of the vehicle as a whole.
-- Define the objective(s) of your analysis.
+
 Our main objectives include cleaning the data, fixing missing values, and creating visualizations such as bar plots and scatter plots.
-- Mention any key assumptions.
+
 Key assumptions that we have made are that certain features, especially car year, mileage, and engine size will strongly relate to price. Newer cars and cars with bigger engines will cost more, while cars with high mileage will usually be priced lower. Fuel type and transmission also show clear price differences. Overall, we expect the multiple regression model to perform better than the simple model because it captures more variables that influence price.
 
 # 2. Data Acquisition & Description
@@ -71,7 +70,7 @@ This section maps directly to the **EDA** part of the rubric:
 
 ```{r}
 library(dplyr)
-summary(cars_data)
+summary(cars_clean)
 ```
 
 
@@ -127,8 +126,6 @@ ggplot(cars_clean) +
 ```
 # 5. Visualization Quality and Storytelling
 
-Use this section to satisfy the **Visualization Quality** rubric criterion:
-
 Histograms specifically help us to visualize distributions within our data set which can help us understand how our outlined variables affect vehicle pricing. Utilizing bar graphs helped us see how the average prices changed across specific car models, and scatter plotting helped us visualize what kind of influence our variables had over increasing or decreasing prices. Boxplots are appropriate to our research as well because they illustrate outliers, and help us see things like the median and maximum values easier.
 
 Upon making our graphs, we tried our best to use titles that were an accurate depiction of what the graph was showcasing as well as labeling our axis concisely. Ultimately we didn't really make use of many legends because most of our graphs were very simplistic and didn't require one... for example our first and second graphs only contained one variable and one color. Similar to this, our color choices were very straight forward and were chosen ensure readability and deter any confusion.
@@ -145,15 +142,12 @@ After our baseline we made or main model which was a multiple linear regression 
 
 # 7. Model Implementation & Evaluation
 
-
 Our model used Mileage, Enginev, and Year as numeric predictors and Brand, Bodytype, and Enginetype as categorical. They were chose becuase they're the most common factors that would influence a cars market value.
-- Data splitting strategy (train/test or cross-validation).
 
 We split the data into 80% training set and 20% testing. It let us fit the model on the majority of the dat set
 and look at how well it can generalize to the cars that are unseen by it.
 
-- Metrics used (accuracy, F1, RMSE, etc.).
-
+- Metrics used 
 The Baseline predicted the average price from the training set for every car in the test set.
 It helps us just have a benchmark that we should try to beat with our model.
 Our baseline RMSE was 23,146.9 which means the guess is off by around 23k on average.
@@ -162,7 +156,6 @@ We built a multiple linear regression model predicting price based on numeric an
 Linear regressions works best becuase our target Price is numeric as well. After training our linear model the RMSE was 16,786.2 which is a lot lower than the baseline.
 
 This meant our model was doing better, and the adjusted R² was 0.4376 which means about 43.8% of the variation in car prices was explained by the  
-- A short interpretation of each metric/plot.
 
 The multiple linear regression model clearly did better the baseline model, lowering the error by over $6,000 on average.
 The adjusted R² shows our model explains a meaningful part of price variation but doesn't grab  everything.
