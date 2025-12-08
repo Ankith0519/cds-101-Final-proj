@@ -9,9 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Group Name / Members" />
+<meta name="author" content="Ankith, Julia, Ruhama" />
 
-<meta name="date" content="2025-11-20" />
+<meta name="date" content="2025-12-08" />
 
 <title>CDS 101 – Final Project Proposal</title>
 
@@ -439,8 +439,8 @@ display: none;
 
 
 <h1 class="title toc-ignore">CDS 101 – Final Project Proposal</h1>
-<h4 class="author">Group Name / Members</h4>
-<h4 class="date">November 20, 2025</h4>
+<h4 class="author">Ankith, Julia, Ruhama</h4>
+<h4 class="date">December 08, 2025</h4>
 
 </div>
 
@@ -459,34 +459,29 @@ Used</a></li>
 
 <div id="dataset" class="section level2" number="1">
 <h2><span class="header-section-number">1</span> 1. Dataset</h2>
-<p><strong>Dataset Name:</strong><br />
-<strong>Source / Platform (Kaggle, UCI, gov, etc.):</strong></p>
-<p><strong>Short Description:</strong><br />
-- What does this dataset contain?<br />
-- What are the main variables (features)?<br />
-- Approximate number of rows / columns?<br />
-- Why is this dataset interesting or relevant?</p>
-<hr />
+<p>Dataset Name: CarDekho Vehicle Dataset Source / Platform: Kaggle (<a href="https://www.kaggle.com/datasets/nehalbirla/vehicle-dataset-from-cardekho" class="uri">https://www.kaggle.com/datasets/nehalbirla/vehicle-dataset-from-cardekho</a>)
+<strong>Short Description:</strong> - What does this dataset contain? *
+This dataset contains used-car listings from CarDekho, including details
+about each vehicle. - What are the main variables (features)? * The
+dataset has variables like car name, car year, selling price, mileage,
+fuel type, seller type, transmission, and number of owners. -
+Approximate number of rows / columns? * The dataset contains about
+around 4,300 rows with 9 coloumns. - Why is this dataset interesting or
+relevant? It is useful for analyzing what factors affect used car prices
+and for building prediction models. For example, factors like how
+mileage,year, fuel type influence prices. —</p>
 </div>
 <div id="dataset-link" class="section level2" number="2">
 <h2><span class="header-section-number">2</span> 2. Dataset Link</h2>
 <p>Paste a direct URL to the dataset (or documentation) here:</p>
-<p><code>https://...</code></p>
+<p><code>https://www.kaggle.com/datasets/nehalbirla/vehicle-dataset-from-cardekho</code></p>
 <hr />
 </div>
 <div id="research-question" class="section level2" number="3">
 <h2><span class="header-section-number">3</span> 3. Research
 Question</h2>
-<p>Write 1–2 clear, specific, data-driven questions you want to
-answer.</p>
-<p><strong>Main research question:</strong></p>
-<blockquote>
-<p><em>Type your main question here.</em></p>
-</blockquote>
-<p><strong>Optional secondary question(s):</strong></p>
-<blockquote>
-<p><em>List any additional questions here.</em></p>
-</blockquote>
+<p>Which car features, like mileage, engine type, etc, have the
+strongest effect on vehicle price?</p>
 <hr />
 </div>
 <div id="modeling-approach-models-used" class="section level2" number="4">
@@ -496,10 +491,11 @@ Models Used</h2>
 <ul>
 <li>Type of task (check all that apply):
 <ul class="task-list">
-<li><label><input type="checkbox"></input>Exploratory analysis only<br />
+<li><label><input type="checkbox" checked></input>Exploratory analysis
+only<br />
 </label></li>
-<li><label><input type="checkbox"></input>Regression (predicting a numeric
-value)<br />
+<li><label><input type="checkbox" checked></input>Regression (predicting a
+numeric value)<br />
 </label></li>
 <li><label><input type="checkbox"></input>Classification (predicting
 categories/labels)<br />
@@ -511,11 +507,20 @@ patterns<br />
 </ul></li>
 </ul>
 <p><strong>Planned models / methods:</strong></p>
-<p>Examples:<br />
-- Linear regression, logistic regression<br />
-- Decision tree (if allowed), k-means<br />
-- Baseline model (e.g., majority class, mean predictor)</p>
-<p><strong>Planned evaluation metrics:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Import the CarDekho dataset into RStudio.</li>
+<li>Clean the dataset: remove missing values, shift columns to correct
+data types, and select relevant variables.</li>
+<li>Create summary tables and visualizations showing how price varies by
+mileage, brand, engine size, fuel type, and transmission.</li>
+<li>Build predictive models such as simple linear regression and
+multiple regression to see which features best explain price
+changes.</li>
+<li>Compare model performance using metrics like RMSE and R² to decide
+which model works better.</li>
+<li>Interpret the results in simple terms so the patterns are easy to
+understand <strong>Planned evaluation metrics:</strong></li>
+</ol>
 <p>Examples:<br />
 - Regression: RMSE, MAE, <span class="math inline">\(R^2\)</span><br />
 - Classification: accuracy, precision/recall, F1, confusion matrix</p>
@@ -524,29 +529,22 @@ patterns<br />
 <div id="expected-results" class="section level2" number="5">
 <h2><span class="header-section-number">5</span> 5. Expected
 Results</h2>
-<p>What do you expect to find? It’s okay if this changes later.</p>
-<ul>
-<li>Bullet point 1 (e.g., “We expect feature X to be a strong predictor
-of Y.”)<br />
-</li>
-<li>Bullet point 2<br />
-</li>
-<li>Bullet point 3</li>
-</ul>
+<p>What do you expect to find? It’s okay if this changes later. * We
+expect year, mileage, and engine size to be the strongest predictors of
+vehicle price. * Newer cars and cars with larger engines will likely
+have higher prices. * Cars with high mileage and certain fuel types will
+generally have lower prices.</p>
 <hr />
 </div>
 <div id="potential-challenges-optional" class="section level2" number="6">
 <h2><span class="header-section-number">6</span> 6. Potential Challenges
 (Optional)</h2>
-<ul>
-<li>What might be difficult? (missing data, noisy labels, small sample
-size, etc.)<br />
-</li>
-<li>How might you handle or mitigate these issues?</li>
-</ul>
-<hr />
+<p>Some entries have missing values and incorrect data types. - How
+might you handle or mitigate these issues? * we Reduce these issues with
+clean the dataset by removing and imputing missing values and converting
+columns to correct data types. —</p>
 <p><strong>Submitted on:</strong><br />
-(Date)</p>
+(Date) Dec 8th, 2025</p>
 </div>
 
 
