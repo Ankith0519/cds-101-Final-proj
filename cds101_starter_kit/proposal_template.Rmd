@@ -14,36 +14,32 @@ output:
 
 ## 1. Dataset
 
-**Dataset Name:**  
-**Source / Platform (Kaggle, UCI, gov, etc.):**  
-
-**Short Description:**  
-- What does this dataset contain?  
-- What are the main variables (features)?  
-- Approximate number of rows / columns?  
+Dataset Name: CarDekho Vehicle Dataset
+Source / Platform: Kaggle (https://www.kaggle.com/datasets/nehalbirla/vehicle-dataset-from-cardekho)
+**Short Description:**
+- What does this dataset contain?
+* This dataset contains used-car listings from CarDekho, including details about each vehicle.
+- What are the main variables (features)?
+* The dataset has variables like car name, car year, selling price, mileage, fuel type, seller type, transmission, and number of owners.
+- Approximate number of rows / columns?
+* The dataset contains about around 4,300 rows with 9 coloumns.
 - Why is this dataset interesting or relevant?
-
+It is useful for analyzing what factors affect used car prices and for building prediction models. For example, factors like how mileage,year, fuel type influence prices.
 ---
 
 ## 2. Dataset Link
 
 Paste a direct URL to the dataset (or documentation) here:
 
-`https://...`
+`https://www.kaggle.com/datasets/nehalbirla/vehicle-dataset-from-cardekho`
 
 ---
 
 ## 3. Research Question
 
-Write 1–2 clear, specific, data-driven questions you want to answer.
+Which car features, like mileage, engine type, etc, have the strongest
+effect on vehicle price?
 
-**Main research question:**
-
-> _Type your main question here._
-
-**Optional secondary question(s):**
-
-> _List any additional questions here._
 
 ---
 
@@ -52,19 +48,24 @@ Write 1–2 clear, specific, data-driven questions you want to answer.
 Describe what you plan to do analytically.
 
 - Type of task (check all that apply):
-  - [ ] Exploratory analysis only  
-  - [ ] Regression (predicting a numeric value)  
+  - [x] Exploratory analysis only  
+  - [x] Regression (predicting a numeric value)  
   - [ ] Classification (predicting categories/labels)  
   - [ ] Clustering / unsupervised patterns  
   - [ ] Other (describe)
 
 **Planned models / methods:**
 
-Examples:  
-- Linear regression, logistic regression  
-- Decision tree (if allowed), k-means  
-- Baseline model (e.g., majority class, mean predictor)
-
+1. Import the CarDekho dataset into RStudio.
+2. Clean the dataset: remove missing values, shift columns to correct data types, and select
+relevant variables.
+3. Create summary tables and visualizations showing how price varies by mileage, brand,
+engine size, fuel type, and transmission.
+4. Build predictive models such as simple linear regression and multiple regression to see
+which features best explain price changes.
+5. Compare model performance using metrics like RMSE and R² to decide which model
+works better.
+6. Interpret the results in simple terms so the patterns are easy to understand
 **Planned evaluation metrics:**
 
 Examples:  
@@ -76,19 +77,18 @@ Examples:
 ## 5. Expected Results
 
 What do you expect to find? It’s okay if this changes later.
-
-- Bullet point 1 (e.g., “We expect feature X to be a strong predictor of Y.”)  
-- Bullet point 2  
-- Bullet point 3  
+* We expect year, mileage, and engine size to be the strongest predictors of vehicle price.
+* Newer cars and cars with larger engines will likely have higher prices.
+* Cars with high mileage and certain fuel types will generally have lower prices.
 
 ---
 
 ## 6. Potential Challenges (Optional)
 
-- What might be difficult? (missing data, noisy labels, small sample size, etc.)  
+Some entries have missing values and incorrect data types.
 - How might you handle or mitigate these issues?
-
+* we Reduce these issues with clean the dataset by removing and imputing missing values and converting columns to correct data types.
 ---
 
 **Submitted on:**  
-(Date)
+(Date) Dec 8th, 2025
